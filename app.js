@@ -45,12 +45,7 @@ class Contact {
     static validateEmail(email) {
         return /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email);
     }
-
-    displayContact() {
-        return `${this.firstName} ${this.lastName}, ${this.address}, ${this.city}, ${this.state}, ${this.zip}, Phone: ${this.phone}, Email: ${this.email}`;
-    }
 }
-
 
 class AddressBook {
     constructor() {
@@ -70,6 +65,16 @@ class AddressBook {
     displayContacts() {
         return this.contacts.map(contact => contact.displayContact());
     }
+
+    findAndEditContact(name, updatedDetails) {
+        const contact = this.contacts.find(c => c.firstName === name || c.lastName === name);
+        if (contact) {
+            Object.assign(contact, updatedDetails);
+            console.log('Contact updated successfully:', contact);
+        } else {
+            console.error('Contact not found.');
+        }
+    }
 }
 
 const addressBook = new AddressBook();
@@ -82,4 +87,10 @@ addressBook.addContact("Bharat 4", "Sharma", "Mathura", "CityName", "UttarPrades
 addressBook.addContact("Bharat 5", "kumar", "Mathura", "CityName", "UttarPradesh", "281001", "1234567890", "Bharat5@gmail.com");
 
 console.log(JSON.stringify(addressBook.contacts));
+console.log();
+
+addressBook.findAndEditContact("Xyz",{city: "NewCity", phone: "9876543210"});
+console.log(JSON.stringify(addressBook.contacts,null,2));
+
+
 console.log();
