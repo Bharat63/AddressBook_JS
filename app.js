@@ -118,7 +118,7 @@ console.log(JSON.stringify(addressBook.contacts,null,2));
 // Display contact count
 console.log("Number of contacts in address book:", addressBook.getContactCount());
 
-addressBook.addContact("Kunal", "chaudhary", "Mathura", "CityName", "UttarPradesh", "281001", "1234567890", "Kunal@gmail.com");
+addressBook.addContact("Bharat 6", "kumar", "Mathura", "CityName", "UttarPradesh", "281001", "1234567890", "Bharat6@gmail.com");
 
 
 
