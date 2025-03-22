@@ -85,12 +85,6 @@ class AddressBook {
             console.error('Contact not found.');
         }
     }
-
-    //count the number of contacts
-
-    getContactCount() {
-        return this.contacts.reduce(count => count + 1, 0);
-    }
 }
 
 const addressBook = new AddressBook();
@@ -110,6 +104,3 @@ console.log(JSON.stringify(addressBook.contacts,null,2));
 
 addressBook.findAndDeleteContact("Abc");
 console.log(JSON.stringify(addressBook.contacts,null,2));
-
-// Display contact count
-console.log("Number of contacts in address book:", addressBook.getContactCount());
