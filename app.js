@@ -26,6 +26,10 @@ class Contact {
         this.email = email;
     }
 
+    displayContact() {
+        return `${this.firstName} ${this.lastName}, ${this.address}, ${this.city}, ${this.state}, ${this.zip}, Phone: ${this.phone}, Email: ${this.email}`;
+    }
+
     static validateName(name) {
         return /^[A-Z][a-zA-Z]{2,}$/.test(name);
     }
@@ -100,6 +104,24 @@ class AddressBook {
     searchByCityOrState(location) {
         return this.contacts.filter(contact => contact.city === location || contact.state === location);
     }
+
+    //search persons using city or state name
+
+    viewPersonsByCityOrState() {
+        const groupedByCity = this.contacts.reduce((acc, contact) => {
+            acc[contact.city] = acc[contact.city] || [];
+            acc[contact.city].push(contact.displayContact());
+            return acc;
+        }, {});
+
+        const groupedByState = this.contacts.reduce((acc, contact) => {
+            acc[contact.state] = acc[contact.state] || [];
+            acc[contact.state].push(contact.displayContact());
+            return acc;
+        }, {});
+
+        return { groupedByCity, groupedByState };
+    }
 }
 
 const addressBook = new AddressBook();
@@ -123,8 +145,11 @@ console.log(JSON.stringify(addressBook.contacts,null,2));
 // Display contact count
 console.log("Number of contacts in address book:", addressBook.getContactCount());
 
-addressBook.addContact("Bharat 6", "kumar", "Mathura", "CityName", "UttarPradesh", "281001", "1234567890", "Bharat6@gmail.com");
+addressBook.addContact("Bharat 6", "Kumar", "Mathura", "CityName", "UttarPradesh", "281001", "1234567890", "bharat6@gmail.com");
 
 // searching contacts by city or state
 console.log("Contacts in CityName:", addressBook.searchByCityOrState("Mathura"));
 console.log("Contacts in StateName:", addressBook.searchByCityOrState("Agra"));
+
+//viewing persons by city or state
+console.log("Persons grouped by city and state:", addressBook.viewPersonsByCityOrState());
