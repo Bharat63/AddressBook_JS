@@ -157,10 +157,10 @@ addressBook.addContact("Bharat 5", "kumar", "Mathura", "CityName", "UttarPradesh
 console.log(JSON.stringify(addressBook.contacts));
 console.log();
 
-addressBook.findAndEditContact("Bharat",{city: "NewCity", phone: "6396301125"});
+addressBook.findAndEditContact("Bharat",{city: "NewCity", phone: "9876543210"});
 console.log(JSON.stringify(addressBook.contacts,null,2));
 
-addressBook.findAndDeleteContact("Bharat 2");
+addressBook.findAndDeleteContact("bharat 2");
 console.log(JSON.stringify(addressBook.contacts,null,2));
 
 // Display contact count
@@ -180,3 +180,8 @@ console.log("Count of contacts by city and state:", addressBook.getContactCountB
 
 // Sorting contacts by name
 addressBook.sortContactsByName();
+
+// Sorting contacts by city, state, and zip
+addressBook.sortByCity();
+addressBook.sortByState();
+addressBook.sortByZip();
